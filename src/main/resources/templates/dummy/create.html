@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Create Dummy</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Create Dummy</div>
+        <hr>
+        <form action="/newdata" method="POST" enctype="multipart/form-data">
+            <table>
+                <tr>
+                <td>ID</td>
+                <td>
+                    <input type="text" name="id">
+                </td>
+            </tr>
+            <tr>
+                <td>Tanggal Lahir</td>
+                <td>
+                    <input type="date" name="date">
+                </td>
+            </tr>
+            <tr>
+                <td>Foto</td>
+                <td>
+                    <input type="file" name="gambar">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit">Submit</button></td>
+            </tr>
+            </table> 
+<!--            <button type="submit">Submit</button>-->
+            <br>
+            <button type="button" onclick="window.location.href='/dummy'">Back</button>
+        </form>
+    </body>
+</html>

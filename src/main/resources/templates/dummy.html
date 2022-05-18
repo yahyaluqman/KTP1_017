@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>E-KTP</title>
+        <title>Dummy</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- JavaScript Bundle with Popper -->
@@ -56,7 +56,46 @@ and open the template in the editor.
                 </div>
             </div>
         </nav>
-        <br>
-        <div align="center">KTP Indonesia</div>
+        <div align="center">Database KTP Indonesia - Dummy</div>
+        <a href="/create">Data baru</a>
+        <a href="/search">Cari data</a>
+        <br><br>
+        <div>
+            <div class="table-responsive">
+<!--                <table id="tabelKTP" class="table table-primary table-striped align-middle">-->
+                <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">NIK</th>
+                        <th scope="col">Tanggal Lahir</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="godummy:${goDummy}">
+                        <td th:text="${godummy.id}"></td>
+                        <td th:text="${#calenders.format(godummy.tanggal, 'dd-MM-yyyy)}"></td>
+                        <td th:text="${godummy.gambar}"></td>
+                        <td></td>
+<!--                        <th scope="col">ID</th>
+                        <th scope="col">Tanggal Lahir</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="goDummy:${goDummy}">
+                        <td th:text="${goDummy.id}"></td>
+                        <td th:text="${#dates.format(goDummy.tanggal, 'dd-MM-yyyy')}"></td>
+                        <td><img src="data:image/jpeg;base64,( ${goDummy.gambar} )"/></td>
+                        <td><a href="/">Detail</a>
+                            <a href="/">Edit</a>
+                            <a href="/">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>-->
+            </table>
+        </div>
     </body>
 </html>
