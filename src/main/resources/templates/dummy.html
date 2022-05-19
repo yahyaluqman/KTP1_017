@@ -31,6 +31,9 @@ and open the template in the editor.
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href='/dummy'>Dummy</a>
+                        </li>
 <!--                        <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
@@ -66,19 +69,7 @@ and open the template in the editor.
                 <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th scope="col">NIK</th>
-                        <th scope="col">Tanggal Lahir</th>
-                        <th scope="col">Foto</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="godummy:${goDummy}">
-                        <td th:text="${godummy.id}"></td>
-                        <td th:text="${#calenders.format(godummy.tanggal, 'dd-MM-yyyy)}"></td>
-                        <td th:text="${godummy.gambar}"></td>
-                        <td></td>
-<!--                        <th scope="col">ID</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Tanggal Lahir</th>
                         <th scope="col">Foto</th>
                         <th scope="col">Aksi</th>
@@ -87,12 +78,12 @@ and open the template in the editor.
                 <tbody>
                     <tr th:each="goDummy:${goDummy}">
                         <td th:text="${goDummy.id}"></td>
-                        <td th:text="${#dates.format(goDummy.tanggal, 'dd-MM-yyyy')}"></td>
+                        <td th:text="${#calendars.format(goDummy.tanggal, 'dd-MM-yyyy')}"></td>
                         <td><img src="data:image/jpeg;base64,( ${goDummy.gambar} )"/></td>
                         <td><a href="/">Detail</a>
                             <a href="/">Edit</a>
                             <a href="/">Delete</a>
-                        </td>-->
+                        </td>
                     </tr>
                 </tbody>
             </table>
