@@ -1,0 +1,18 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:object": {},
+        "th:action": {
+            "context": "form"
+        },
+        "th:src": {
+            "context": "img"
+        },
+        "th:field": {
+            "context": "input"
+        },
+        "th:value": {
+            "context": "input"
+        }
+    }
+}

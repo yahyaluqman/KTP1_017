@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,7 +51,7 @@ public class DummyController {
         }
         
         model.addAttribute("goDummy", data);
-         model.addAttribute("record", record);
+        model.addAttribute("record", record);
          
         return "dummy";
     }
@@ -66,7 +68,7 @@ public class DummyController {
         String id = data.getParameter("id");
         int iid = Integer.parseInt(id);
         
-        String tanggal = data.getParameter("date");
+        String tanggal = data.getParameter("tanggal");
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tanggal);
         
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
@@ -88,5 +90,38 @@ public class DummyController {
       Dummy dumdata = dummyctrl.findDummy(iid);
       byte[] image = dumdata.getGambar();
       return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+    }
+    @GetMapping("/delete/{id}")    
+    public String deleteData(@PathVariable("id") int iid, Model model) throws Exception{
+        dummyctrl.destroy(iid);
+        return "redirect:/dummy"; 
+    }
+    
+    @RequestMapping("/edit/{id}")    
+    public String getDataById(@PathVariable("id") int iid, Model model) throws Exception {
+        Dummy dumdata = dummyctrl.findDummy(iid);
+        model.addAttribute("goDummy", data);
+        return "editktp";
+    }
+    
+    @PostMapping(value="/updatedata", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String updateData(@RequestParam("gambar") MultipartFile file, HttpServletRequest data) throws ParseException, Exception{
+        Dummy dumdata = new Dummy();
+        
+        String id = data.getParameter("id");
+        int iid = Integer.parseInt(id);
+        
+        String tanggal = data.getParameter("tanggal");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tanggal);
+        
+        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        byte[] image = file.getBytes();
+        
+        dumdata.setId(iid);
+        dumdata.setTanggal(date);
+        dumdata.setGambar(image);
+        
+        dummyctrl.edit(dumdata);
+        return "redirect:/dummy";
     }
 }

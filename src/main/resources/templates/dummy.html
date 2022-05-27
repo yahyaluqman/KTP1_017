@@ -60,12 +60,20 @@ and open the template in the editor.
                         <td><img th:src="@{${'/image?id='+ goDummy.id}}" alt="poto" width="100"></td>
                         <td>
                             <a href="/">Detail</a>
-                            <a href="/edit">Edit</a>
-                            <a href="/">Delete</a>
+                            <a th:href="@{/edit/{id}(id=${goDummy.id})}">Edit</a>
+                            <a href="#" th:onclick="|deleteData('${goDummy.id}')|">Delete</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+    <script>
+      const deleteData = v => {
+        const id = v
+        if(confirm(`Yakin ingin menghapus data ${id}?`)){
+          location.href = `/delete/${id}`;
+        }
+      }
+    </script>
     </body>
 </html>
