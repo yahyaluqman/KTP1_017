@@ -12,11 +12,13 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -69,7 +71,7 @@ public class DummyController {
         
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         byte[] image = file.getBytes();
-        
+
         dumdata.setId(iid);
         dumdata.setTanggal(date);
         dumdata.setGambar(image);
@@ -77,5 +79,14 @@ public class DummyController {
         dummyctrl.create(dumdata);
         
         return "dummy/create";
+    }
+    
+    @RequestMapping(value = "/image", method = RequestMethod.GET ,produces = {
+    MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE
+    })
+    public ResponseEntity<byte[]> getImage(@RequestParam("id") int iid) throws Exception {
+      Dummy dumdata = dummyctrl.findDummy(iid);
+      byte[] image = dumdata.getGambar();
+      return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 }
