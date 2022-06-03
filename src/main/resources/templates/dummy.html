@@ -43,7 +43,6 @@ and open the template in the editor.
         <br><br>
         <div>
             <div class="table-responsive">
-<!--                <table id="tabelKTP" class="table table-primary table-striped align-middle">-->
                 <table class="table align-middle">
                 <thead>
                     <tr>
@@ -68,8 +67,8 @@ and open the template in the editor.
             </table>
         </div>
     <script>
-      const deleteData = v => {
-        const id = v
+      const deleteData = del => {
+        const id = del
         if(confirm(`Yakin ingin menghapus data ${id}?`)){
           location.href = `/delete/${id}`;
         }
